@@ -17,7 +17,6 @@ class App extends React.Component {
     this.setState({query: event.target.value});
   }
 
-
 //get new token here: https://developer.spotify.com/web-api/console/get-search-item/
   handleSubmit(event) {
     event.preventDefault();
@@ -31,7 +30,7 @@ class App extends React.Component {
         'market': 'US'
       },
       headers: {
-        'Authorization': 'Bearer BQBwgvQvgJD_yRcTGl4W1ymrtW51RXbgIiBWxSHdqJEgxlBV0_GoWKHCRv8tOdoeH3N3aS0dA3Df-TatirSHUz6Lvci9eMc823Xd8obofmp9ynQPIBG_4Dxk3tQzQt5KPOlsile-IQ2lbts'
+        'Authorization': 'Bearer BQA4U5aD8u7lTIJ27CKploPkrnfQNWxXpCt4wOnC9vLZ1HXGMfCJ9kvNewf3L4KOTqeGcH4ra4XHx2rRCgQo36zVi-s_7xkg7dhmf0cGrH0tBebi-ny_MWNa1PO8WhKAM9BBrcTkqk613LU'
       },
       success: (data) => {
         console.log('data retrieved', data);
@@ -61,8 +60,10 @@ class App extends React.Component {
               $.ajax({
                 type: 'GET',
                 url: '/items',
+                data: {q: this.state.query},
                 success: (data) => {
-                  console.log('Fetched info from server', data);
+                  this.setState({items: JSON.parse(data)});
+                  console.log('Fetched info from server', this.state.items);
                 },
                 error: (err) => {
                   console.log('Error fetching info from server');
@@ -71,7 +72,6 @@ class App extends React.Component {
             }
         });
       },
-
       error: (err) => {
         console.log('err', err);
       }
