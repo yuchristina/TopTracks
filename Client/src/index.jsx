@@ -31,22 +31,20 @@ class App extends React.Component {
         'market': 'US'
       },
       headers: {
-        'Authorization': 'Bearer BQDuGDCiQvIegKTFwgRg2ZlGCcNbtRWVNAbCLhEMe5WwP4PCqvdCEjjhfHbhEmHS5atFU0ncKV6nzJ1oNwrD2bA_P1PglEobUHqd8xindUaL9gA4dhG3sY3GE5oS0ijNh7o0meVEiSisvDY'
+        'Authorization': 'Bearer BQBwgvQvgJD_yRcTGl4W1ymrtW51RXbgIiBWxSHdqJEgxlBV0_GoWKHCRv8tOdoeH3N3aS0dA3Df-TatirSHUz6Lvci9eMc823Xd8obofmp9ynQPIBG_4Dxk3tQzQt5KPOlsile-IQ2lbts'
       },
       success: (data) => {
         console.log('data retrieved', data);
-        var tracksArray = [];
+        var counter = 0;
         data.tracks.items.forEach( element => {
             var obj = {
+              query: this.state.query,
               artist: element.artists[0].name,
               url: element.preview_url,
               name: element.name,
               album: element.album.name,
               cover: element.album.images[0].url
             };
-            // tracksArray.push(obj);
-            // if(tracksArray.length === data.tracks.items.length) {
-            //   console.log('ORIGINAL', tracksArray);
             $.ajax({
               type: 'POST',
               url: '/items', 
@@ -56,9 +54,22 @@ class App extends React.Component {
               },
               error: (err) => {
                 console.log('err', err);
-              },
-              });
+              }
             });
+            counter = counter + 1;
+            if(counter === 10){
+              $.ajax({
+                type: 'GET',
+                url: '/items',
+                success: (data) => {
+                  console.log('Fetched info from server', data);
+                },
+                error: (err) => {
+                  console.log('Error fetching info from server');
+                }
+              });            
+            }
+        });
       },
 
       error: (err) => {
