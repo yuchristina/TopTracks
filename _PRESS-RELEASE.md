@@ -1,5 +1,7 @@
-# Project Name #
+Spotify: Top Tracks Preview
 
+This product 'Top Tracks Preview' is a web-app that allows users to search for tracks by inputting key words.
+Based on the query, 5 top tracks will be displayed, along with their display image, and link to preview te track. This is a fun way for users to discover and preview tracks before they buy or download. Long a spotify enthusiast, but reluctant login or download the app on public workstations, customer Greg responded: 'this Web App is a wonderful way to preview tracks without having to login!'.
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 
