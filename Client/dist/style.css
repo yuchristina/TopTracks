@@ -7,6 +7,16 @@ body{
   margin: 25px;
 }
 
+h2{
+  float: right;
+  color: #ffffff;
+  font-size: 18px;
+  position: relative;  
+  top: -10px;
+  right: 10px;
+  vertical-align: text-bottom;
+}
+
 h4{
   color: #ffffff;
 }
@@ -14,6 +24,15 @@ h4{
 h1{
   color: #ffffff;
 }
+
+.saved {
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid purple;
+  margin: 10px;
+  padding: 10px;
+  width: 70%;
+} 
 
 .items {
   font-size: 16px;
@@ -52,6 +71,19 @@ h1{
   border: 1px solid #00B4CC;
   background: #00B4CC;
   text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.playButton {
+  position: relative;  
+  vertical-align: text-top;
+  right: -700px;
+  width: 60px;
+  height: 30px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;

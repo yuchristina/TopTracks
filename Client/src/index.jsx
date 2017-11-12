@@ -3,14 +3,22 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import List from './components/List.jsx';
 import Search from './components/Search.jsx';
+import Saved from './components/Saved.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
       query: '',
-      items: []
+      items: [],
+      storage: []
     };
+  }
+
+  handleSave(event) {
+    if(this.state.items[event-1] !== undefined) {
+       this.state.storage = this.state.storage.concat(this.state.items[event-1]);
+    }
   }
 
   handleChange(event) {
@@ -30,7 +38,7 @@ class App extends React.Component {
         'market': 'US'
       },
       headers: {
-        'Authorization': 'Bearer BQA4U5aD8u7lTIJ27CKploPkrnfQNWxXpCt4wOnC9vLZ1HXGMfCJ9kvNewf3L4KOTqeGcH4ra4XHx2rRCgQo36zVi-s_7xkg7dhmf0cGrH0tBebi-ny_MWNa1PO8WhKAM9BBrcTkqk613LU'
+        'Authorization': 'Bearer BQDkc7fdb_WzGv-u3KcUqxDd7mgbwpp6hu1OUr4ph7vyC5C9aW203sFy8mbvA9ueN-FVvTDHXRFzvpQx_0JcfkXcFW0GigJY0WbkdKRNAiIAqG_i4enyw4SzuLtQUcACFVfHcnhZ_Iemjao'
       },
       success: (data) => {
         console.log('data retrieved', data);
@@ -79,10 +87,18 @@ class App extends React.Component {
   }
 
   render () {
+    if(this.state.storage.length > 0) {
+        var storage = <Saved stored={this.state.storage} />
+      }
+
     return (<div>
       <h1>Spotify: Top Tracks Preview</h1>
+      <h4> So, what song are you in the mood for? </h4>
+      <br></br> 
+      <br></br> 
+      {storage}
       <Search onSubmit={this.handleSubmit.bind(this)} onChange={this.handleChange.bind(this)}/>
-      <List items={this.state.items}/>
+      <List items={this.state.items} onSave={this.handleSave.bind(this)}/>
     </div>)
   }
 }

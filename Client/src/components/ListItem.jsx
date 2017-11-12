@@ -2,6 +2,7 @@ import React from 'react';
 
 const ListItem = (props) => (
   <div className = 'items'>
+  <button onClick={props.onSave.bind(this, props.id)} type="button" className ="playButton"> Save </button>
   <li> Track name: {props.item.name} </li>
   <li> Artist: {props.item.artist} </li>
   <li> Album: {props.item.album} </li>

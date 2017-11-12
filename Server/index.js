@@ -11,14 +11,16 @@ app.use(express.static(__dirname + '/../Client/dist'));
 
 var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var query;
 
 app.get('/items', urlencodedParser, function (req, res) {
-   database.retrieve(req.param('q'), (err, data) => {
+   database.retrieve(query, (err, data) => {
    	res.end(JSON.stringify(data));
    })
 });
 
 app.post('/items', urlencodedParser, function (req, res) {
+  query = req.body.query;
   database.selectAll(req.body.name, req.body.url, req.body.cover, req.body.album, req.body.artist, req.body.query, (err, value) => {
       res.end();
     });
